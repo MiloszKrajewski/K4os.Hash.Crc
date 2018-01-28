@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "K4os.Hash.Crc", "K4os.Hash.Crc\K4os.Hash.Crc.csproj", "{51B76929-4C4A-4F83-B79F-CF8D060C094D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{9014ED5B-A827-4540-AF70-E9098580253D}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.fsx = ..\build.fsx
+		..\build.tools.fsx = ..\build.tools.fsx
+		..\CHANGES.md = ..\CHANGES.md
+		..\paket.dependencies = ..\paket.dependencies
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K4os.Hash.Crc.Test", "K4os.Hash.Crc.Test\K4os.Hash.Crc.Test.csproj", "{DEC6D2CD-4705-4F8A-9E16-EC36EA16C11F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51B76929-4C4A-4F83-B79F-CF8D060C094D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B76929-4C4A-4F83-B79F-CF8D060C094D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B76929-4C4A-4F83-B79F-CF8D060C094D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B76929-4C4A-4F83-B79F-CF8D060C094D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC6D2CD-4705-4F8A-9E16-EC36EA16C11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC6D2CD-4705-4F8A-9E16-EC36EA16C11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC6D2CD-4705-4F8A-9E16-EC36EA16C11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC6D2CD-4705-4F8A-9E16-EC36EA16C11F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49633997-5231-42E8-83C7-A32A5FDE3B3D}
+	EndGlobalSection
+EndGlobal
