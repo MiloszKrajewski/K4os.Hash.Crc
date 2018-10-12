@@ -1,3 +1,6 @@
+## 1.1.1 (2018/10/12)
+* minor performance improvement
+
 ## 1.1.0 (2018/01/28)
 * reworked HashAlgorithm implementation
 * breaking interface changes

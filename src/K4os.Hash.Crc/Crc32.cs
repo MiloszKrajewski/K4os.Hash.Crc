@@ -49,7 +49,7 @@ namespace K4os.Hash.Crc
 					length -= 8;
 				}
 
-				while (length > 4)
+				if (length >= 4)
 				{
 					seed = (seed >> 8) ^ tableP[(bytesP[0] ^ seed) & 0xff];
 					seed = (seed >> 8) ^ tableP[(bytesP[1] ^ seed) & 0xff];
@@ -58,12 +58,20 @@ namespace K4os.Hash.Crc
 					bytesP += 4;
 					length -= 4;
 				}
-
-				while (length > 0)
+				
+				if (length >= 2)
 				{
 					seed = (seed >> 8) ^ tableP[(bytesP[0] ^ seed) & 0xff];
-					bytesP++;
-					length--;
+					seed = (seed >> 8) ^ tableP[(bytesP[1] ^ seed) & 0xff];
+					bytesP += 2;
+					length -= 2;
+				}
+
+				if (length > 0)
+				{
+					seed = (seed >> 8) ^ tableP[(bytesP[0] ^ seed) & 0xff];
+					// bytesP++;
+					// length--;
 				}
 			}
 

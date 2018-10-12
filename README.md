@@ -9,6 +9,6 @@ TBD
 # Build
 
 ```shell
-paket install
+paket restore
 fake build
 ```
