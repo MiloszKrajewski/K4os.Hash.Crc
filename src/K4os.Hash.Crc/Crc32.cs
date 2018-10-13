@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
 namespace K4os.Hash.Crc
@@ -17,7 +18,7 @@ namespace K4os.Hash.Crc
 		}
 
 		private static unsafe uint DigestOf(
-			uint[] table, byte[] bytes, int index, int length, uint seed = 0)
+			uint[] table, byte* bytesP, int length, uint seed = 0)
 		{
 			if (length == 0)
 				return seed;
@@ -25,16 +26,10 @@ namespace K4os.Hash.Crc
 			if (table == null || table.Length != 256)
 				throw new ArgumentException("Invalid lookup table");
 
-			if (bytes == null || index < 0 || length < 0 || index + length > bytes.Length)
-				throw new ArgumentException("Invalid buffer boundaries");
-
 			seed = ~seed;
 
 			fixed (uint* tableP = table)
-			fixed (byte* bytes0 = bytes)
 			{
-				var bytesP = bytes0 + index;
-
 				while (length >= 8)
 				{
 					seed = (seed >> 8) ^ tableP[(bytesP[0] ^ seed) & 0xff];
@@ -77,18 +72,50 @@ namespace K4os.Hash.Crc
 
 			return ~seed;
 		}
+		
+		public static unsafe uint DigestOf(
+			Crc32Table table, byte* bytes, int length, uint seed = 0) => 
+			DigestOf(table.Data, bytes, length, seed);
 
-		public static uint DigestOf(Crc32Table table, byte[] bytes, int index, int length, uint seed = 0) =>
-			DigestOf(table.Data, bytes, index, length, seed);
+		public static unsafe uint DigestOf(byte* bytes, int length, uint seed = 0) =>
+			DigestOf(Crc32Table.Default, bytes, length, seed);
+
+		public static unsafe uint DigestOf(
+			Crc32Table table, ReadOnlySpan<byte> bytes, uint seed = 0)
+		{
+			fixed (byte* bytesP = &MemoryMarshal.GetReference(bytes))
+				return DigestOf(table.Data, bytesP, bytes.Length, seed);
+		}
+
+		public static uint DigestOf(ReadOnlySpan<byte> bytes, uint seed = 0) =>
+			DigestOf(Crc32Table.Default, bytes, seed);
+
+		public static unsafe uint DigestOf(
+			Crc32Table table, byte[] bytes, int offset, int length, uint seed = 0)
+		{
+			Validate(bytes, offset, length);
+			
+			fixed (byte* bytesP = bytes)
+				return DigestOf(table.Data, bytesP + offset, length, seed);
+		}
 
 		public static uint DigestOf(byte[] bytes, int index, int length, uint seed = 0) =>
-			DigestOf(Crc32Table.Default.Data, bytes, index, length, seed);
+			DigestOf(Crc32Table.Default, bytes, index, length, seed);
 
 		public void Reset() =>
 			_seed = 0;
+		
+		public unsafe void Update(byte* bytesP, int length) =>
+			_seed = DigestOf(_table, bytesP, length, _seed);
+		
+		public void Update(ReadOnlySpan<byte> bytes) =>
+			_seed = DigestOf(_table, bytes, _seed);
 
-		public void Update(byte[] bytes, int index, int length) =>
+		public void Update(byte[] bytes, int index, int length)
+		{
+			Validate(bytes, index, length);
 			_seed = DigestOf(_table, bytes, index, length, _seed);
+		}
 
 		public uint Digest() => _seed;
 
@@ -96,5 +123,11 @@ namespace K4os.Hash.Crc
 
 		public HashAlgorithm AsHashAlgorithm() =>
 			new HashAlgorithmAdapter(sizeof(uint) << 3, Reset, Update, DigestBytes);
+
+		protected static void Validate(byte[] bytes, int offset, int length)
+		{
+			if (bytes == null || offset < 0 || length < 0 || offset + length > bytes.Length)
+				throw new ArgumentException("Invalid buffer boundaries");
+		}
 	}
 }

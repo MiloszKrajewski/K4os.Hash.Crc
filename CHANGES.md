@@ -1,3 +1,7 @@
+## 1.1.3 (2018/10/13)
+* added Span and byte* to interface
+* minor safety tweaks
+
 ## 1.1.1 (2018/10/12)
 * minor performance improvement
 

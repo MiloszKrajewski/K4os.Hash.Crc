@@ -2,6 +2,8 @@ storage: none
 framework: auto-detect
 source https://www.nuget.org/api/v2
 
+nuget System.Memory
+
 nuget Microsoft.NET.Test.Sdk
 nuget xunit
 nuget xunit.runner.visualstudio
