@@ -5,15 +5,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <Authors>Milosz Krajewski</Authors>
     <PackageId>K4os.Hash.Crc</PackageId>
-    <Product>K4os.Hash.Crc</Product>
-    <Description>CRC32 hash implementation for .NET</Description>
     <PackageTags>hash crc</PackageTags>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/MiloszKrajewski/K4os.Hash.Crc/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/MiloszKrajewski/K4os.Hash.Crc</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/MiloszKrajewski/K4os.Hash.Crc</RepositoryUrl>
-    <!--<PackageIconUrl>...</PackageIconUrl>-->
   </PropertyGroup>
   <Import Project="..\..\Common.targets" />
   <Import Project="..\..\.paket\Paket.Restore.targets" />

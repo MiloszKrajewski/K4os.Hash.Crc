@@ -4,4 +4,14 @@
     <AssemblyVersion>1.1.3</AssemblyVersion>
     <FileVersion>1.1.3</FileVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <Product>K4os.Hash.Crc</Product>
+    <Authors>Milosz Krajewski</Authors>
+    <Copyright>Milosz Krajewski</Copyright>
+    <Description>CRC32 hash implementation for .NET</Description>
+    <RepositoryUrl>https://github.com/MiloszKrajewski/K4os.Hash.Crc</RepositoryUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/MiloszKrajewski/K4os.Hash.Crc/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MiloszKrajewski/K4os.Hash.Crc</PackageProjectUrl>
+    <!--<PackageIconUrl>...</PackageIconUrl>-->
+  </PropertyGroup>
 </Project>

@@ -4,9 +4,12 @@
 .paket/
 .output/
 .idea/
-.tools/
 paket-files/
-.secrets.config
+packages/
 
 **/bin/
 **/obj/
+
+.secrets.cfg
+
+*.bak
