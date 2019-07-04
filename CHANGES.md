@@ -1,3 +1,6 @@
+## 1.1.4 (2019/07/04)
+* added support for .NET 4.5
+
 ## 1.1.3 (2018/10/13)
 * added Span and byte* to interface
 * minor safety tweaks
